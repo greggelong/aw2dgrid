@@ -35,7 +35,7 @@ function setup() {
 
   for (let i = 0; i < objs.length; i++) {
     objs[i].resize(100, 0);
-    objs[i].filter(INVERT);
+    // objs[i].filter(INVERT);
   }
 
   // starting positions
