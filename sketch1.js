@@ -1,6 +1,7 @@
 let cnv;
 let objs = [];
 let grd;
+let toglines = false; // to show guid lines
 
 let positions = []; // current positions
 let targets = []; // target positions
@@ -69,6 +70,21 @@ function draw() {
       moving = true;
     }
   }
+  // toggle lines
+  if (toglines) {
+    // --- draw lines connecting-
+    for (let i = 0; i < objs.length; i++) {
+      strokeWeight(3);
+      let clr = map(i, 0, 8, 128, 255);
+      stroke(0, clr, clr);
+      let x = lerp(positions[i].x, targets[i].x, t);
+      let y = lerp(positions[i].y, targets[i].y, t);
+      stroke(clr, 0, 0);
+      line(positions[i].x, positions[i].y, targets[i].x, targets[i].y);
+      stroke(0, clr, clr);
+      line(x, y, targets[i].x, targets[i].y);
+    }
+  }
 
   // --- draw images ---
   imageMode(CENTER);
@@ -108,4 +124,12 @@ function noOverlap(x, y, arr, minDist) {
     }
   }
   return true;
+}
+
+function mouseClicked() {
+  if (toglines) {
+    toglines = false;
+  } else {
+    toglines = true;
+  }
 }
