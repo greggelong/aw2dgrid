@@ -35,6 +35,7 @@ function setup() {
 
   for (let i = 0; i < objs.length; i++) {
     objs[i].resize(100, 0);
+    objs[i].filter(POSTERIZE);
     objs[i].filter(GRAY);
   }
 
